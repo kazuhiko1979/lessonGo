@@ -2,22 +2,21 @@ package main
 
 import (
 	"fmt"
-	"strconv"
 )
 
 func main() {
-	var x int = 1
-	xx := float64(x)
-	fmt.Printf("%T %v %f\n", xx, xx, xx)
+	var a [2]int
+	a[0] = 100
+	a[1] = 200
+	fmt.Println(a)
 
-	var y float64 = 1.2
-	yy := int(y)
-	fmt.Printf("%T %v %d\n", yy, yy, yy)
+	// list
+	// var b [2]int = [2]int{100, 200}
+	// b = append(b, 300)
+	// fmt.Println(b)
 
-	var s string = "14"
-	i, _ := strconv.Atoi(s)
-	fmt.Printf("%T %v\n", i, i)
-
-	h := "Hello World"
-	fmt.Println(string(h[0]))
+	// slice
+	var b []int = []int{100, 200}
+	b = append(b, 300)
+	fmt.Print(b)
 }
