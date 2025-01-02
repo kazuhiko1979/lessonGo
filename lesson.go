@@ -5,24 +5,33 @@ import (
 )
 
 func main() {
+	m := map[string]int{"apple": 100, "banana": 200}
+	fmt.Println(m)
+	fmt.Println(m["apple"])
+	m["banana"] = 300
+	fmt.Println(m)
+	m["new"] = 500
+	fmt.Println(m)
 
-	n := []int{1, 2, 3, 4, 5, 6}
-	fmt.Println(n)
-	fmt.Println(n[2:4])
-	fmt.Println(n[:2])
-	fmt.Println(n[2:])
-	fmt.Println(n[:])
+	fmt.Println(m["nothing"])
 
-	n[2] = 100
-	fmt.Println(n)
+	v, ok := m["apple"]
+	fmt.Println(v, ok)
 
-	var board = [][]int{
-		{0, 1, 2},
-		{3, 4, 5},
-		{6, 7, 8},
+	v2, ok2 := m["nothing"]
+	fmt.Println(v2, ok2)
+
+	m2 := make(map[string]int)
+	m2["pc"] = 5000
+	fmt.Println(m2)
+
+	// var m3 map[string]int
+	// m3["pc"] = 5000
+	// fmt.Println(m3)
+
+	var s []int
+	if s == nil {
+		fmt.Println("Nil")
 	}
-	fmt.Println(board)
 
-	n = append(n, 100, 200, 300, 400)
-	fmt.Println(n)
 }
