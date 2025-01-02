@@ -4,34 +4,35 @@ import (
 	"fmt"
 )
 
-func main() {
-	m := map[string]int{"apple": 100, "banana": 200}
-	fmt.Println(m)
-	fmt.Println(m["apple"])
-	m["banana"] = 300
-	fmt.Println(m)
-	m["new"] = 500
-	fmt.Println(m)
-
-	fmt.Println(m["nothing"])
-
-	v, ok := m["apple"]
-	fmt.Println(v, ok)
-
-	v2, ok2 := m["nothing"]
-	fmt.Println(v2, ok2)
-
-	m2 := make(map[string]int)
-	m2["pc"] = 5000
-	fmt.Println(m2)
-
-	// var m3 map[string]int
-	// m3["pc"] = 5000
-	// fmt.Println(m3)
-
-	var s []int
-	if s == nil {
-		fmt.Println("Nil")
+func incrementGenerator() func() int {
+	x := 0
+	return func() int {
+		x++
+		return x
 	}
+}
+
+func circleArea(pi float64) func(radius float64) float64 {
+	return func(radius float64) float64 {
+		return pi * radius * radius
+	}
+}
+
+func main() {
+
+	counter := incrementGenerator()
+
+	fmt.Println(counter())
+	fmt.Println(counter())
+	fmt.Println(counter())
+	fmt.Println(counter())
+
+	c1 := circleArea(3.14)
+	fmt.Println(c1(2))
+	fmt.Println(c1(3))
+
+	c2 := circleArea(3)
+	fmt.Println(c2(2))
+	fmt.Println(c2(3))
 
 }
