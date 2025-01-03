@@ -1,3 +1,5 @@
+//go:build lesson.go
+
 package main
 
 import (
