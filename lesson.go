@@ -4,29 +4,32 @@ package main
 
 import (
 	"fmt"
-	"time"
+	"os"
 )
 
-func getOsName() string {
-	return "fafaf"
+func foo() {
+	defer fmt.Println("deferred call in foo")
+
+	fmt.Println("hello from foo")
 }
+
 func main() {
-	switch os := getOsName(); os {
-	case "mac":
-		fmt.Println("Mac!!")
-	case "windows":
-		fmt.Println("Windows!!")
-	default:
-		fmt.Println("Default!!", os)
-	}
 
-	t := time.Now()
-	fmt.Println(t.Hour())
+	// defer fmt.Println("deferred call in main")
+	// foo()
 
-	switch {
-	case t.Hour() < 12:
-		fmt.Println("Good morning")
-	case t.Hour() < 17:
-		fmt.Println("Good afternoon")
-	}
+	// fmt.Println("hello")
+
+	// fmt.Println("run")
+	// defer fmt.Println(1)
+	// defer fmt.Println(2)
+	// defer fmt.Println(3)
+	// fmt.Println("success")
+
+	file, _ := os.Open("lesson.go")
+	defer file.Close()
+	data := make([]byte, 100)
+	file.Read(data)
+	fmt.Println(string(data))
+
 }
