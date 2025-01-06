@@ -1,40 +1,32 @@
-//go:build lesson.go
+// Go:build main
 
 package main
 
-import (
-	"fmt"
-)
-
-func incrementGenerator() func() int {
-	x := 0
-	return func() int {
-		x++
-		return x
-	}
-}
-
-func circleArea(pi float64) func(radius float64) float64 {
-	return func(radius float64) float64 {
-		return pi * radius * radius
-	}
-}
+import "fmt"
 
 func main() {
+	l := []string{"python", "go", "java"}
 
-	counter := incrementGenerator()
+	for i := 0; i < len(l); i++ {
+		fmt.Println(i, l[i])
+	}
 
-	fmt.Println(counter())
-	fmt.Println(counter())
-	fmt.Println(counter())
-	fmt.Println(counter())
+	for i, v := range l {
+		fmt.Println(i, v)
+	}
 
-	c1 := circleArea(3.14)
-	fmt.Println(c1(2))
-	fmt.Println(c1(3))
+	for _, v := range l {
+		fmt.Println(v)
+	}
 
-	c2 := circleArea(3)
-	fmt.Println(c2(2))
-	fmt.Println(c2(3))
+	m := map[string]int{"apple": 100, "banana": 200}
+
+	for k := range m {
+		fmt.Println(k)
+	}
+
+	for _, v := range m {
+		fmt.Println(v)
+	}
 
 }
