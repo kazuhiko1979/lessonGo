@@ -2,31 +2,31 @@
 
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"time"
+)
 
+func getOsName() string {
+	return "fafaf"
+}
 func main() {
-	l := []string{"python", "go", "java"}
-
-	for i := 0; i < len(l); i++ {
-		fmt.Println(i, l[i])
+	switch os := getOsName(); os {
+	case "mac":
+		fmt.Println("Mac!!")
+	case "windows":
+		fmt.Println("Windows!!")
+	default:
+		fmt.Println("Default!!", os)
 	}
 
-	for i, v := range l {
-		fmt.Println(i, v)
+	t := time.Now()
+	fmt.Println(t.Hour())
+
+	switch {
+	case t.Hour() < 12:
+		fmt.Println("Good morning")
+	case t.Hour() < 17:
+		fmt.Println("Good afternoon")
 	}
-
-	for _, v := range l {
-		fmt.Println(v)
-	}
-
-	m := map[string]int{"apple": 100, "banana": 200}
-
-	for k := range m {
-		fmt.Println(k)
-	}
-
-	for _, v := range m {
-		fmt.Println(v)
-	}
-
 }
