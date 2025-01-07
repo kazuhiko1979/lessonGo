@@ -4,32 +4,33 @@ package main
 
 import (
 	"fmt"
+	"io"
+	"log"
 	"os"
 )
 
-func foo() {
-	defer fmt.Println("deferred call in foo")
+func LogginSettings(logFile string) {
+	logfile, _ := os.OpenFile(logFile, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
+	multiLogfile := io.MultiWriter(os.Stdout, logfile)
+	log.SetFlags(log.Ldate | log.Ltime | log.Llongfile)
+	log.SetOutput(multiLogfile)
 
-	fmt.Println("hello from foo")
 }
 
 func main() {
+	LogginSettings("test.log")
+	_, err := os.Open("fafafa")
+	if err != nil {
+		log.Fatalln("Exit", err)
+	}
 
-	// defer fmt.Println("deferred call in main")
-	// foo()
+	log.Println("logging!")
+	log.Printf("%T %v\n", "test", "test")
 
-	// fmt.Println("hello")
+	log.Fatalf("%T %v", "test", "test")
 
-	// fmt.Println("run")
-	// defer fmt.Println(1)
-	// defer fmt.Println(2)
-	// defer fmt.Println(3)
-	// fmt.Println("success")
+	log.Fatalln("error!")
 
-	file, _ := os.Open("lesson.go")
-	defer file.Close()
-	data := make([]byte, 100)
-	file.Read(data)
-	fmt.Println(string(data))
+	fmt.Println("ok")
 
 }
