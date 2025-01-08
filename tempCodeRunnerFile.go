@@ -1,1 +1,2 @@
-	case "mac":
+
+		fmt.Println(s)
