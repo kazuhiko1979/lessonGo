@@ -1,2 +1,1 @@
-
-		fmt.Println(s)
+var p *int = new(int
