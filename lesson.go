@@ -1,25 +1,35 @@
 // Go:build main
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"sync"
+)
 
-type Vertex struct {
-	X, Y int
+func goroutine(s string, wg *sync.WaitGroup) {
+	for i := 0; i < 5; i++ {
+		// time.Sleep(100 * time.Millisecond)
+		fmt.Println(s)
+	}
+	wg.Done()
 }
 
-// func Plus(v Vertex) int {
-// 	return v.X + v.Y
-// }
+func normal(s string) {
+	for i := 0; i < 5; i++ {
+		// time.Sleep(100 * time.Millisecond)
+		fmt.Println(s)
+	}
 
-// func (v Vertex) Plus() int {
-// 	return v.X + v.Y
-// }
-
-func (v Vertex) String() string {
-	return fmt.Sprintf("Q2 X is %d! Y: %d!", v.X, v.Y)
 }
 
 func main() {
-	v := Vertex{3, 4}
-	fmt.Println(v)
+	var wg sync.WaitGroup
+	wg.Add(1)
+	wg.Add(1)
+
+	go goroutine("world", &wg)
+	normal("hello")
+	// time.Sleep(2000 * time.Millisecond)
+	wg.Wait()
+
 }
