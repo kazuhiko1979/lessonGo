@@ -1,1 +1,2 @@
-var p *int = new(int
+
+	fmt.Println(y)
