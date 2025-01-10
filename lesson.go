@@ -3,31 +3,23 @@ package main
 
 import "fmt"
 
-type UserNotFound struct {
-	username string
+type Vertex struct {
+	X, Y int
 }
 
-func (e *UserNotFound) Error() string {
-	return fmt.Sprintf("User not found: %v", e.username)
-}
+// func Plus(v Vertex) int {
+// 	return v.X + v.Y
+// }
 
-func myFunc() error {
-	// Something wrong
-	ok := false
-	if ok {
-		return nil
-	}
-	return &UserNotFound{username: "mike"}
+// func (v Vertex) Plus() int {
+// 	return v.X + v.Y
+// }
 
+func (v Vertex) String() string {
+	return fmt.Sprintf("Q2 X is %d! Y: %d!", v.X, v.Y)
 }
 
 func main() {
-	e1 := &UserNotFound{"mike"}
-	e2 := &UserNotFound{"mike"}
-	fmt.Println(e1 == e2)
-
-	err := myFunc()
-	if err != nil {
-		fmt.Println(err)
-	}
+	v := Vertex{3, 4}
+	fmt.Println(v)
 }
