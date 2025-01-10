@@ -1,33 +1,46 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"sync"
+	"time"
+)
 
-func goroutine(s []int, c chan int) {
-	sum := 0
-	for _, v := range s {
-		sum += v
-		c <- sum
+func producer(ch chan int, i int) {
+	// Something
+	ch <- i * 2
+}
+
+func consumer(ch chan int, wg *sync.WaitGroup) {
+	for i := range ch {
+		func() {
+			defer wg.Done()
+			fmt.Println("process", i*1000)
+		}()
 	}
-	close(c)
+
+	// for i := range ch {
+	// 	fmt.Println("process", i*1000)
+	// 	wg.Done()
+	// }
+	fmt.Println("##################")
 }
 
 func main() {
-	s := []int{1, 2, 3, 4, 5}
-	c := make(chan int, len(s))
-	go goroutine(s, c)
-	for i := range c {
-		fmt.Println(i)
+
+	var wg sync.WaitGroup
+	ch := make(chan int)
+
+	// Producer
+	for i := 0; i < 10; i++ {
+		wg.Add(1)
+		go producer(ch, i)
 	}
+
+	// Consumer
+	go consumer(ch, &wg)
+	wg.Wait()
+	close(ch)
+	time.Sleep(2 * time.Second)
+	fmt.Println("Done")
 }
-
-// ch := make(chan int, 2)
-// ch <- 100
-// fmt.Println(len(ch))
-// ch <- 200
-// fmt.Println(len(ch))
-
-// close(ch)
-
-// for c := range ch {
-// 	fmt.Println(c)
-// }
