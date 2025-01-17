@@ -1,2 +1,2 @@
-
-	fmt.Println(y)
+r(500 * time.Millisecond)
+	for {
