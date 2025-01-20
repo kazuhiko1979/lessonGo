@@ -1,32 +1,85 @@
 package main
 
 import (
-	"fmt"
-
-	"gopkg.in/ini.v1"
+	"io/ioutil"
+	"log"
+	"net/http"
+	"regexp"
+	"text/template"
 )
 
-type ConfigList struct {
-	Port      int
-	DbName    string
-	SQLDriver string
+type Page struct {
+	Title string
+	Body  []byte
 }
 
-var Config ConfigList
+func (p *Page) save() error {
+	filename := p.Title + ".txt"
+	return ioutil.WriteFile(filename, p.Body, 0600)
+}
 
-func init() {
-	cfg, _ := ini.Load("config.ini")
-	Config = ConfigList{
-		Port:      cfg.Section("web").Key("port").MustInt(),
-		DbName:    cfg.Section("db").Key("name").MustString("example.sql"),
-		SQLDriver: cfg.Section("db").Key("driver").String(),
+func loadpage(title string) (*Page, error) {
+	filename := title + ".txt"
+	body, err := ioutil.ReadFile(filename)
+	if err != nil {
+		return nil, err
+	}
+	return &Page{Title: title, Body: body}, nil
+}
+
+var templates = template.Must(template.ParseFiles("edit.html", "view.html"))
+
+func renderTemplate(w http.ResponseWriter, tmpl string, p *Page) {
+	err := templates.ExecuteTemplate(w, tmpl+".html", p)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
 }
 
-func main() {
+func viewHandler(w http.ResponseWriter, r *http.Request, title string) {
+	p, err := loadpage(title)
+	if err != nil {
+		http.Redirect(w, r, "/edit/"+title, http.StatusFound)
+		return
+	}
+	renderTemplate(w, "view", p)
+}
 
-	fmt.Printf("%T %v\n", Config.Port, Config.Port)
-	fmt.Printf("%T %v\n", Config.DbName, Config.DbName)
-	fmt.Printf("%T %v\n", Config.SQLDriver, Config.SQLDriver)
+func editHandler(w http.ResponseWriter, r *http.Request, title string) {
+	p, err := loadpage(title)
+	if err != nil {
+		p = &Page{Title: title}
+	}
+	renderTemplate(w, "edit", p)
+}
+
+func saveHandler(w http.ResponseWriter, r *http.Request, title string) {
+	body := r.FormValue("body")
+	p := &Page{Title: title, Body: []byte(body)}
+	err := p.save()
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
+	http.Redirect(w, r, "/view/"+title, http.StatusFound)
+}
+
+var validPath = regexp.MustCompile("^/(edit|save|view)/([a-zA-Z0-9]+)$")
+
+func makeHandler(fn func(http.ResponseWriter, *http.Request, string)) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		m := validPath.FindStringSubmatch(r.URL.Path)
+		if m == nil {
+			http.NotFound(w, r)
+			return
+		}
+		fn(w, r, m[2])
+	}
+}
+func main() {
+	http.HandleFunc("/view/", makeHandler(viewHandler))
+	http.HandleFunc("/edit/", makeHandler(editHandler))
+	http.HandleFunc("/save/", makeHandler(saveHandler))
+
+	log.Fatal(http.ListenAndServe(":8080", nil))
 
 }
