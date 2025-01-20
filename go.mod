@@ -7,5 +7,7 @@ require (
 	github.com/markcheno/go-talib v0.0.0-20250114000313-ec55a20c902f // indirect
 	github.com/yuin/goldmark v1.4.13 // indirect
 	golang.org/x/mod v0.22.0 // indirect
+	golang.org/x/sync v0.10.0 // indirect
 	golang.org/x/tools v0.29.0 // indirect
+	gopkg.in/ini.v1 v1.67.0 // indirect
 )

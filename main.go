@@ -1,38 +1,32 @@
 package main
 
 import (
-	"context"
 	"fmt"
-	"time"
+
+	"gopkg.in/ini.v1"
 )
 
-func longProcess(ctx context.Context, ch chan string) {
-	fmt.Println("run")
-	time.Sleep(2 * time.Second)
-	fmt.Println("finish")
-	ch <- "result"
+type ConfigList struct {
+	Port      int
+	DbName    string
+	SQLDriver string
+}
+
+var Config ConfigList
+
+func init() {
+	cfg, _ := ini.Load("config.ini")
+	Config = ConfigList{
+		Port:      cfg.Section("web").Key("port").MustInt(),
+		DbName:    cfg.Section("db").Key("name").MustString("example.sql"),
+		SQLDriver: cfg.Section("db").Key("driver").String(),
+	}
 }
 
 func main() {
-	ch := make(chan string)
-	// ctx := context.Background()
-	// ctx, cancel := context.WithTimeout(ctx, 1*time.Second)
-	// defer cancel()
-	ctx := context.TODO()
-	go longProcess(ctx, ch)
-	// cancel()
 
-CTXLOOP:
-	for {
-		select {
-		case <-ctx.Done():
-			fmt.Println(ctx.Err())
-			break CTXLOOP
-		case <-ch:
-			fmt.Println("success")
-			break CTXLOOP
+	fmt.Printf("%T %v\n", Config.Port, Config.Port)
+	fmt.Printf("%T %v\n", Config.DbName, Config.DbName)
+	fmt.Printf("%T %v\n", Config.SQLDriver, Config.SQLDriver)
 
-		}
-	}
-	fmt.Println("###############")
 }
