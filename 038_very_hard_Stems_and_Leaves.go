@@ -72,13 +72,13 @@ func stemPlot(lst []int) []string {
 
 }
 
-func main() {
-	// 動作確認
-	data1 := []int{111, 11, 1}
-	data2 := []int{4, 8, 75}
-	data3 := []int{22, 22, 38, 22, 19}
+// func main() {
+// 	// 動作確認
+// 	data1 := []int{111, 11, 1}
+// 	data2 := []int{4, 8, 75}
+// 	data3 := []int{22, 22, 38, 22, 19}
 
-	fmt.Println(stemPlot(data1)) // ["0 | 1", "1 | 1", "11 | 1"]
-	fmt.Println(stemPlot(data2)) // ["0 | 4 8", "7 | 5"]
-	fmt.Println(stemPlot(data3)) // ["1 | 9", "2 | 2 2 2", "3 | 8"]
-}
+// 	fmt.Println(stemPlot(data1)) // ["0 | 1", "1 | 1", "11 | 1"]
+// 	fmt.Println(stemPlot(data2)) // ["0 | 4 8", "7 | 5"]
+// 	fmt.Println(stemPlot(data3)) // ["1 | 9", "2 | 2 2 2", "3 | 8"]
+// }
