@@ -22,8 +22,6 @@ Keep trailing zeros in the output.
 
 package main
 
-import "fmt"
-
 func leftSlide(row []int) []int {
 	// 非0要素を集まる（左に詰める）
 	nonZero := []int{}
@@ -51,20 +49,20 @@ func leftSlide(row []int) []int {
 	return nonZero
 }
 
-func main() {
-	testCases := [][]int{
-		{2, 2, 2, 0},
-		{2, 2, 4, 4, 8, 8},
-		{0, 2, 0, 2, 4},
-		{0, 2, 2, 8, 8, 8},
-		{0, 0, 0, 0},
-		{0, 0, 0, 2},
-		{2, 0, 0, 0},
-		{8, 2, 2, 4},
-		{1024, 1024, 1024, 512, 512, 256, 256, 128, 128, 64, 32, 32},
-	}
+// func main() {
+// 	testCases := [][]int{
+// 		{2, 2, 2, 0},
+// 		{2, 2, 4, 4, 8, 8},
+// 		{0, 2, 0, 2, 4},
+// 		{0, 2, 2, 8, 8, 8},
+// 		{0, 0, 0, 0},
+// 		{0, 0, 0, 2},
+// 		{2, 0, 0, 0},
+// 		{8, 2, 2, 4},
+// 		{1024, 1024, 1024, 512, 512, 256, 256, 128, 128, 64, 32, 32},
+// 	}
 
-	for _, testCase := range testCases {
-		fmt.Println(leftSlide(testCase))
-	}
-}
+// 	for _, testCase := range testCases {
+// 		fmt.Println(leftSlide(testCase))
+// 	}
+// }
