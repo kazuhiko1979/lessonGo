@@ -43,8 +43,6 @@ ruth_aaron(11) ➞ False
 
 package main
 
-import "fmt"
-
 // getPrimeFactors は、与えられた整数 x の素因数を重複を含めて列挙して返します。
 // 例: 12 -> [2, 2, 3]
 
@@ -148,18 +146,18 @@ func ruth_aaron(n int) interface{} {
 
 }
 
-func main() {
-	fmt.Println(ruth_aaron(5))     // -> ['Ruth',3])
-	fmt.Println(ruth_aaron(25))    // -> ['Aaron',1])
-	fmt.Println(ruth_aaron(498))   // -> False)
-	fmt.Println(ruth_aaron(125))   // -> ['Ruth',2])
-	fmt.Println(ruth_aaron(715))   // -> ['Aaron',3])
-	fmt.Println(ruth_aaron(1470))  // -> False)
-	fmt.Println(ruth_aaron(21183)) // -> ['Ruth',1])
-	fmt.Println(ruth_aaron(5561))  // -> ['Aaron',2])
-	fmt.Println(ruth_aaron(6225))  // -> False)
-	fmt.Println(ruth_aaron(26642)) // -> ['Ruth',3])
-	fmt.Println(ruth_aaron(18656)) // -> ['Aaron',1])
-	fmt.Println(ruth_aaron(8558))  // -> False)
+// func main() {
+// 	fmt.Println(ruth_aaron(5))     // -> ['Ruth',3])
+// 	fmt.Println(ruth_aaron(25))    // -> ['Aaron',1])
+// 	fmt.Println(ruth_aaron(498))   // -> False)
+// 	fmt.Println(ruth_aaron(125))   // -> ['Ruth',2])
+// 	fmt.Println(ruth_aaron(715))   // -> ['Aaron',3])
+// 	fmt.Println(ruth_aaron(1470))  // -> False)
+// 	fmt.Println(ruth_aaron(21183)) // -> ['Ruth',1])
+// 	fmt.Println(ruth_aaron(5561))  // -> ['Aaron',2])
+// 	fmt.Println(ruth_aaron(6225))  // -> False)
+// 	fmt.Println(ruth_aaron(26642)) // -> ['Ruth',3])
+// 	fmt.Println(ruth_aaron(18656)) // -> ['Aaron',1])
+// 	fmt.Println(ruth_aaron(8558))  // -> False)
 
-}
+// }

@@ -75,14 +75,14 @@ func hexColorMixer(colors []string) string {
 	return fmt.Sprintf("#%02X%02X%02X", avgR, avgG, avgB)
 }
 
-func main() {
-	fmt.Println(hexColorMixer([]string{"#FFFF00", "#FF0000"}))
-	fmt.Println(hexColorMixer([]string{"#FFFF00", "#0000FF"}))                                             // "#808080", Example #2
-	fmt.Println(hexColorMixer([]string{"#B60E73", "#0EAEB6"}))                                             // "#625E95", Example #3
-	fmt.Println(hexColorMixer([]string{"#FF0000", "#00FF00", "#0000FF"}))                                  // "#555555"
-	fmt.Println(hexColorMixer([]string{"#99CC00", "#663399", "#1A8191"}))                                  // "#5E8063"
-	fmt.Println(hexColorMixer([]string{"#918381", "#D53B21", "#A54C83", "#DEFACF"}))                       // "#BA817D"
-	fmt.Println(hexColorMixer([]string{"#140A23", "#46B31E", "#CFDF08", "#263534", "#EAD1FB", "#235E02"})) // "#65803F"
-	fmt.Println(hexColorMixer([]string{"#FFFFFF", "#000000", "#000000", "#FFFFFF"}))                       // "#808080"
-	fmt.Println(hexColorMixer([]string{"#CCCCCC"}))
-}
+// func main() {
+// 	fmt.Println(hexColorMixer([]string{"#FFFF00", "#FF0000"}))
+// 	fmt.Println(hexColorMixer([]string{"#FFFF00", "#0000FF"}))                                             // "#808080", Example #2
+// 	fmt.Println(hexColorMixer([]string{"#B60E73", "#0EAEB6"}))                                             // "#625E95", Example #3
+// 	fmt.Println(hexColorMixer([]string{"#FF0000", "#00FF00", "#0000FF"}))                                  // "#555555"
+// 	fmt.Println(hexColorMixer([]string{"#99CC00", "#663399", "#1A8191"}))                                  // "#5E8063"
+// 	fmt.Println(hexColorMixer([]string{"#918381", "#D53B21", "#A54C83", "#DEFACF"}))                       // "#BA817D"
+// 	fmt.Println(hexColorMixer([]string{"#140A23", "#46B31E", "#CFDF08", "#263534", "#EAD1FB", "#235E02"})) // "#65803F"
+// 	fmt.Println(hexColorMixer([]string{"#FFFFFF", "#000000", "#000000", "#FFFFFF"}))                       // "#808080"
+// 	fmt.Println(hexColorMixer([]string{"#CCCCCC"}))
+// }

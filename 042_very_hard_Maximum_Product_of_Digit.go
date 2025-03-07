@@ -16,7 +16,6 @@ Search for numbers in the range: [0, n].
 package main
 
 import (
-	"fmt"
 	"strconv"
 )
 
@@ -43,10 +42,10 @@ func maxProduct(n int) []int {
 	return maxProductNumbers
 }
 
-func main() {
-	testCases := []int{8, 21, 26, 27, 43, 90, 199, 211, 455, 917, 1578, 9578, 11111, 41111}
-	for _, test := range testCases {
-		fmt.Println(maxProduct(test))
-	}
+// func main() {
+// 	testCases := []int{8, 21, 26, 27, 43, 90, 199, 211, 455, 917, 1578, 9578, 11111, 41111}
+// 	for _, test := range testCases {
+// 		fmt.Println(maxProduct(test))
+// 	}
 
-}
+// }
