@@ -45,11 +45,11 @@ func easterDate(year int) string {
 	return fmt.Sprintf("%s %d", monthName, day)
 }
 
-func main() {
+// func main() {
 
-	fmt.Println(easterDate(1600)) // ➞ "April 2"
-	fmt.Println(easterDate(2020)) // ➞ "April 12"
-	fmt.Println(easterDate(1853)) // ➞ "March 27"
-	fmt.Println(easterDate(3535)) // ➞ "April 14"
+// 	fmt.Println(easterDate(1600)) // ➞ "April 2"
+// 	fmt.Println(easterDate(2020)) // ➞ "April 12"
+// 	fmt.Println(easterDate(1853)) // ➞ "March 27"
+// 	fmt.Println(easterDate(3535)) // ➞ "April 14"
 
-}
+// }

@@ -1,9 +1,5 @@
 package main
 
-import (
-	"fmt"
-)
-
 // isIsomorphic は、文字列 s と t がイソモルフィック（
 // 「sの文字 ⇔ tの文字」が 1 対 1 で矛盾なく対応するか）を判定します。
 func isIsomorphic(s string, t string) bool {
@@ -46,11 +42,11 @@ func isIsomorphic(s string, t string) bool {
 }
 
 // 確認用
-func main() {
-	fmt.Println(isIsomorphic("egg", "add"))                 // => true
-	fmt.Println(isIsomorphic("aba", "baa"))                 // => false
-	fmt.Println(isIsomorphic("paper", "title"))             // => true
-	fmt.Println(isIsomorphic("ab", "ca"))                   // => true
-	fmt.Println(isIsomorphic("abab", "baba"))               // => true
-	fmt.Println(isIsomorphic("approximate", "tooxaezptom")) // => false
-}
+// func main() {
+// 	fmt.Println(isIsomorphic("egg", "add"))                 // => true
+// 	fmt.Println(isIsomorphic("aba", "baa"))                 // => false
+// 	fmt.Println(isIsomorphic("paper", "title"))             // => true
+// 	fmt.Println(isIsomorphic("ab", "ca"))                   // => true
+// 	fmt.Println(isIsomorphic("abab", "baba"))               // => true
+// 	fmt.Println(isIsomorphic("approximate", "tooxaezptom")) // => false
+// }
