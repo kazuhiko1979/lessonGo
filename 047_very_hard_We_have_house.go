@@ -59,20 +59,20 @@ func weHaveHouse(h, w, d, r int) string {
 	return fmt.Sprintf("Yellow: %d, Gray: %d", yellowArea, grayArea)
 }
 
-func main() {
-	// テストケース
-	fmt.Println(weHaveHouse(8, 30, 32, 8))   // "Yellow: 873, Gray: 242"
-	fmt.Println(weHaveHouse(10, 31, 30, 11)) // "No permission."
-	fmt.Println(weHaveHouse(8, 30, 30, 8))   // "Yellow: 849, Gray: 234"
-	fmt.Println(weHaveHouse(9, 20, 18, 8))   // "Yellow: 581, Gray: 146"
-	fmt.Println(weHaveHouse(9, 14, 20, 9))   // "House too small."
-	fmt.Println(weHaveHouse(8, 16, 12, 8))   // "Yellow: 353, Gray: 106"
-	fmt.Println(weHaveHouse(10, 25, 25, 0))  // "Yellow: 689, Gray: 194"
-	fmt.Println(weHaveHouse(8, 45, 42, 8))   // "House too big."
-	fmt.Println(weHaveHouse(10, 40, 40, 10)) // "Yellow: 1569, Gray: 314"
-	fmt.Println(weHaveHouse(10, 15, 10, 7))  // "House too small."
-	fmt.Println(weHaveHouse(9, 38, 36, 9))   // "Yellow: 1267, Gray: 290"
-	fmt.Println(weHaveHouse(8, 15, 12, 6))   // "Yellow: 303, Gray: 102"
-	fmt.Println(weHaveHouse(8, 30, 45, 6))   // "House too big."
-	fmt.Println(weHaveHouse(9, 20, 14, 8))   // "Yellow: 525, Gray: 130"
-}
+// func main() {
+// 	// テストケース
+// 	fmt.Println(weHaveHouse(8, 30, 32, 8))   // "Yellow: 873, Gray: 242"
+// 	fmt.Println(weHaveHouse(10, 31, 30, 11)) // "No permission."
+// 	fmt.Println(weHaveHouse(8, 30, 30, 8))   // "Yellow: 849, Gray: 234"
+// 	fmt.Println(weHaveHouse(9, 20, 18, 8))   // "Yellow: 581, Gray: 146"
+// 	fmt.Println(weHaveHouse(9, 14, 20, 9))   // "House too small."
+// 	fmt.Println(weHaveHouse(8, 16, 12, 8))   // "Yellow: 353, Gray: 106"
+// 	fmt.Println(weHaveHouse(10, 25, 25, 0))  // "Yellow: 689, Gray: 194"
+// 	fmt.Println(weHaveHouse(8, 45, 42, 8))   // "House too big."
+// 	fmt.Println(weHaveHouse(10, 40, 40, 10)) // "Yellow: 1569, Gray: 314"
+// 	fmt.Println(weHaveHouse(10, 15, 10, 7))  // "House too small."
+// 	fmt.Println(weHaveHouse(9, 38, 36, 9))   // "Yellow: 1267, Gray: 290"
+// 	fmt.Println(weHaveHouse(8, 15, 12, 6))   // "Yellow: 303, Gray: 102"
+// 	fmt.Println(weHaveHouse(8, 30, 45, 6))   // "House too big."
+// 	fmt.Println(weHaveHouse(9, 20, 14, 8))   // "Yellow: 525, Gray: 130"
+// }
