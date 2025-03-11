@@ -1,56 +1,82 @@
 package main
 
-import (
-	"fmt"
-	"log"
-	"os"
-)
+import "fmt"
 
-type Result struct {
-	Response *os.File
-	Error    error
-}
-
-func CheckFile(done <-chan interface{}, filenames ...string) <-chan Result {
-	results := make(chan Result)
+func generator(done <-chan interface{}) <-chan interface{} {
+	intChan := make(chan interface{})
 
 	go func() {
-		defer close(results)
+		defer fmt.Println("generator done")
+		defer close(intChan)
 
-		for _, filename := range filenames {
-			var result Result
-			file, err := os.Open(filename)
-			result = Result{file, err}
-			// if err != nil {
-			// 	fmt.Println(err)
-			// 	return
-			// }
-
+		for i := 0; i < 100; i++ {
 			select {
 			case <-done:
 				return
-			case results <- result:
+			case intChan <- i:
 			}
 		}
 	}()
 
-	return results
+	return intChan
+}
+
+func orDone(done, c <-chan interface{}) <-chan interface{} {
+	valStream := make(chan interface{})
+
+	go func() {
+		defer close(valStream)
+		for {
+			select {
+			case <-done:
+				return
+			case v, ok := <-c:
+				if ok == false {
+					return
+				}
+				select {
+				case valStream <- v:
+				case <-done:
+				}
+			}
+		}
+	}()
+	return valStream
+}
+
+func tee(done, c <-chan interface{}) (<-chan interface{}, <-chan interface{}) {
+	out1 := make(chan interface{})
+	out2 := make(chan interface{})
+
+	go func() {
+		defer close(out1)
+		defer close(out2)
+
+		for v := range orDone(done, c) {
+			var Out1, Out2 = out1, out2
+
+			for i := 0; i < 2; i++ {
+				select {
+				case <-done:
+				case Out1 <- v:
+					Out1 = nil
+				case Out2 <- v:
+					Out2 = nil
+				}
+			}
+		}
+	}()
+	return out1, out2
 }
 
 func main() {
 
 	done := make(chan interface{})
 
-	defer close(done)
+	out1, out2 := tee(done, generator(done))
 
-	filenames := []string{"main.go", "x.go", "y.go"}
-
-	for result := range CheckFile(done, filenames...) {
-		if result.Error != nil {
-			log.Printf("error: %v\n", result.Error)
-			continue
-		}
-
-		fmt.Printf("Response: %v\n", result.Response.Name())
+	for v1 := range out1 {
+		fmt.Printf("out1: %v, out2: %v\n", v1, <-out2)
 	}
+
 }
