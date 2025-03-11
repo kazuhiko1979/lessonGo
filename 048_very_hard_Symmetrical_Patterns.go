@@ -107,26 +107,26 @@ func classifyRug(rug [][]string) string {
 	}
 }
 
-func main() {
-	// テストケース
-	fmt.Println(classifyRug([][]string{
-		{"a", "a"},
-		{"a", "a"},
-	})) // ➞ "perfect"
+// func main() {
+// 	// テストケース
+// 	fmt.Println(classifyRug([][]string{
+// 		{"a", "a"},
+// 		{"a", "a"},
+// 	})) // ➞ "perfect"
 
-	fmt.Println(classifyRug([][]string{
-		{"a", "a", "b"},
-		{"a", "a", "a"},
-		{"b", "a", "a"},
-	})) // ➞ "imperfect"
+// 	fmt.Println(classifyRug([][]string{
+// 		{"a", "a", "b"},
+// 		{"a", "a", "a"},
+// 		{"b", "a", "a"},
+// 	})) // ➞ "imperfect"
 
-	fmt.Println(classifyRug([][]string{
-		{"b", "a"},
-		{"b", "a"},
-	})) // ➞ "horizontally symmetric"
+// 	fmt.Println(classifyRug([][]string{
+// 		{"b", "a"},
+// 		{"b", "a"},
+// 	})) // ➞ "horizontally symmetric"
 
-	fmt.Println(classifyRug([][]string{
-		{"a", "a"},
-		{"b", "b"},
-	})) // ➞ "vertically symmetric"
-}
+// 	fmt.Println(classifyRug([][]string{
+// 		{"a", "a"},
+// 		{"b", "b"},
+// 	})) // ➞ "vertically symmetric"
+// }
