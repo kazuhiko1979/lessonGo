@@ -1,82 +1,82 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"time"
+)
 
-func generator(done <-chan interface{}) <-chan interface{} {
-	intChan := make(chan interface{})
+func DoWorkVer1(done <-chan interface{}, palseInterval time.Duration) (<-chan interface{}, <-chan time.Time) {
+	heartbeat := make(chan interface{})
+	results := make(chan time.Time)
 
 	go func() {
-		defer fmt.Println("generator done")
-		defer close(intChan)
+		// defer close(heartbeat)
+		// defer close(results)
 
-		for i := 0; i < 100; i++ {
+		heartbeatpalse := time.Tick(palseInterval)
+		workGen := time.Tick(2 * palseInterval)
+
+		sendHeartBeatPalse := func() {
 			select {
-			case <-done:
-				return
-			case intChan <- i:
+			case heartbeat <- struct{}{}:
+			default:
 			}
 		}
-	}()
 
-	return intChan
-}
-
-func orDone(done, c <-chan interface{}) <-chan interface{} {
-	valStream := make(chan interface{})
-
-	go func() {
-		defer close(valStream)
-		for {
-			select {
-			case <-done:
-				return
-			case v, ok := <-c:
-				if ok == false {
+		sendResult := func(result time.Time) {
+			for {
+				select {
+				case <-done:
+					return
+				case <-heartbeatpalse:
+					sendHeartBeatPalse()
+				case results <- result.Local():
 					return
 				}
-				select {
-				case valStream <- v:
-				case <-done:
-				}
+			}
+		}
+
+		// for {
+		for i := 0; i < 2; i++ {
+			select {
+			case <-done:
+				return
+			case <-heartbeatpalse:
+				sendHeartBeatPalse()
+
+			case result := <-workGen:
+				sendResult(result)
 			}
 		}
 	}()
-	return valStream
-}
 
-func tee(done, c <-chan interface{}) (<-chan interface{}, <-chan interface{}) {
-	out1 := make(chan interface{})
-	out2 := make(chan interface{})
-
-	go func() {
-		defer close(out1)
-		defer close(out2)
-
-		for v := range orDone(done, c) {
-			var Out1, Out2 = out1, out2
-
-			for i := 0; i < 2; i++ {
-				select {
-				case <-done:
-				case Out1 <- v:
-					Out1 = nil
-				case Out2 <- v:
-					Out2 = nil
-				}
-			}
-		}
-	}()
-	return out1, out2
+	return heartbeat, results
 }
 
 func main() {
 
 	done := make(chan interface{})
 
-	out1, out2 := tee(done, generator(done))
+	const timeout = 2 * time.Second
+	heartbeat, results := DoWorkVer1(done, timeout/2)
 
-	for v1 := range out1 {
-		fmt.Printf("out1: %v, out2: %v\n", v1, <-out2)
+	for {
+		select {
+		case _, ok := <-heartbeat:
+			if !ok {
+				return
+			}
+			fmt.Println("receive heartbeat")
+
+		case r, ok := <-results:
+			if !ok {
+				return
+			}
+			fmt.Printf("receive result %v\n", r)
+
+		case <-time.After(timeout):
+			fmt.Println("worker gorutine is not healthy!")
+			return
+		}
 	}
-
 }

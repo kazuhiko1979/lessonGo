@@ -58,9 +58,9 @@ func abs(n int) int {
 	return n
 }
 
-func main() {
-	// テストケース
-	fmt.Println(makeAnagram("cde", "abc"))                                             // ➞ 4
-	fmt.Println(makeAnagram("fcrxzwscanmligyxyvym", "jxwtrhvujlmrpdoqbisbwhmgpmeoke")) // ➞ 30
-	fmt.Println(makeAnagram("showman", "woman"))                                       // ➞ 2
-}
+// func main() {
+// 	// テストケース
+// 	fmt.Println(makeAnagram("cde", "abc"))                                             // ➞ 4
+// 	fmt.Println(makeAnagram("fcrxzwscanmligyxyvym", "jxwtrhvujlmrpdoqbisbwhmgpmeoke")) // ➞ 30
+// 	fmt.Println(makeAnagram("showman", "woman"))                                       // ➞ 2
+// }
