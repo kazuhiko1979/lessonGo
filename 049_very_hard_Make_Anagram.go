@@ -15,8 +15,6 @@ make_anagram("showman", "woman") ➞ 2
 
 package main
 
-import "fmt"
-
 func makeAnagram(str1, str2 string) int {
 	// 文字の出現回数をカウント
 	count1 := make(map[rune]int)

@@ -42,7 +42,6 @@ The function should produce the same output even if dateStart is greater than da
 package main
 
 import (
-	"fmt"
 	"sort"
 	"time"
 )
@@ -108,19 +107,19 @@ func indexOf(slice []string, s string) int {
 	return -1
 }
 
-func main() {
-	// テスト例1
-	january := time.Date(2017, time.January, 1, 0, 0, 0, 0, time.UTC)
-	march := time.Date(2017, time.March, 1, 0, 0, 0, 0, time.UTC)
-	fmt.Println("Test 1:", monthsInterval(january, march))
+// func main() {
+// 	// テスト例1
+// 	january := time.Date(2017, time.January, 1, 0, 0, 0, 0, time.UTC)
+// 	march := time.Date(2017, time.March, 1, 0, 0, 0, 0, time.UTC)
+// 	fmt.Println("Test 1:", monthsInterval(january, march))
 
-	// テスト例2
-	december := time.Date(2017, time.December, 1, 0, 0, 0, 0, time.UTC)
-	januaryNext := time.Date(2018, time.January, 1, 0, 0, 0, 0, time.UTC)
-	fmt.Println("Test 2:", monthsInterval(december, januaryNext))
+// 	// テスト例2
+// 	december := time.Date(2017, time.December, 1, 0, 0, 0, 0, time.UTC)
+// 	januaryNext := time.Date(2018, time.January, 1, 0, 0, 0, 0, time.UTC)
+// 	fmt.Println("Test 2:", monthsInterval(december, januaryNext))
 
-	// テスト例3
-	january2017 := time.Date(2017, time.January, 1, 0, 0, 0, 0, time.UTC)
-	january2018 := time.Date(2018, time.January, 1, 0, 0, 0, 0, time.UTC)
-	fmt.Println("Test 3:", monthsInterval(january2017, january2018))
-}
+// 	// テスト例3
+// 	january2017 := time.Date(2017, time.January, 1, 0, 0, 0, 0, time.UTC)
+// 	january2018 := time.Date(2018, time.January, 1, 0, 0, 0, 0, time.UTC)
+// 	fmt.Println("Test 3:", monthsInterval(january2017, january2018))
+// }
