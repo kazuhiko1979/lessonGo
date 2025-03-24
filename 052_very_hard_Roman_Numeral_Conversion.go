@@ -35,7 +35,6 @@ Numerical and Roman Numeral inputs will be positive numbers between 1 and 9999.
 package main
 
 import (
-	"fmt"
 	"strings"
 )
 
@@ -86,13 +85,13 @@ func romanNumerals(input interface{}) interface{} {
 	return nil
 }
 
-func main() {
-	testCases := []interface{}{
-		"I", "V", "X", "L", "C", "D", "M", "IV", "VI", "XIV", "LIX", "XCIX",
-		"CII", "XLV", "XXX", "XXXVI", "DCCXIV", "MMXVIII", "MDCLXVI", "MCCCXXIV", 1324,
-	}
+// func main() {
+// 	testCases := []interface{}{
+// 		"I", "V", "X", "L", "C", "D", "M", "IV", "VI", "XIV", "LIX", "XCIX",
+// 		"CII", "XLV", "XXX", "XXXVI", "DCCXIV", "MMXVIII", "MDCLXVI", "MCCCXXIV", 1324,
+// 	}
 
-	for _, testCase := range testCases {
-		fmt.Println(romanNumerals(testCase))
-	}
-}
+// 	for _, testCase := range testCases {
+// 		fmt.Println(romanNumerals(testCase))
+// 	}
+// }

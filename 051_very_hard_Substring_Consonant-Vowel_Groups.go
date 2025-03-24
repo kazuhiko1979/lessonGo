@@ -26,7 +26,6 @@ Exclude the empty string when outputting the array.
 package main
 
 import (
-	"fmt"
 	"sort"
 )
 
@@ -70,9 +69,9 @@ func contains(str string, char byte) bool {
 	return false
 }
 
-func main() {
-	fmt.Println(getVowelSubstrings("apple"))        // ["a", "apple", "e"]
-	fmt.Println(getVowelSubstrings("hmm"))          // []
-	fmt.Println(getConsonantSubstrings("aviation")) // ["n", "t", "tion", "v", "viat", "viation"]
-	fmt.Println(getConsonantSubstrings("motor"))    // ["m", "mot", "motor", "r", "t", "tor"]
-}
+// func main() {
+// 	fmt.Println(getVowelSubstrings("apple"))        // ["a", "apple", "e"]
+// 	fmt.Println(getVowelSubstrings("hmm"))          // []
+// 	fmt.Println(getConsonantSubstrings("aviation")) // ["n", "t", "tion", "v", "viat", "viation"]
+// 	fmt.Println(getConsonantSubstrings("motor"))    // ["m", "mot", "motor", "r", "t", "tor"]
+// }
