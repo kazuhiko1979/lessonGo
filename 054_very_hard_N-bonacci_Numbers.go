@@ -25,8 +25,6 @@ bonacci(5, 10) ➞ 16
 
 package main
 
-import "fmt"
-
 func bonacci(N, k int) int {
 	// kがNより前なら、初期値なので0を返す（最初のN-1項は0）
 	if k <= N-1 {
@@ -48,12 +46,12 @@ func bonacci(N, k int) int {
 	return sequence[k-1]
 }
 
-func main() {
-	fmt.Println(bonacci(2, 7))  // 8
-	fmt.Println(bonacci(3, 13)) // 274
-	fmt.Println(bonacci(5, 24)) // 203513
-	fmt.Println(bonacci(8, 44)) // 32440904961（intオーバーフローに注意）
-	fmt.Println(bonacci(1, 4))  // 1
-	fmt.Println(bonacci(2, 2))  // 1
-	fmt.Println(bonacci(3, 1))  // 0
-}
+// func main() {
+// 	fmt.Println(bonacci(2, 7))  // 8
+// 	fmt.Println(bonacci(3, 13)) // 274
+// 	fmt.Println(bonacci(5, 24)) // 203513
+// 	fmt.Println(bonacci(8, 44)) // 32440904961（intオーバーフローに注意）
+// 	fmt.Println(bonacci(1, 4))  // 1
+// 	fmt.Println(bonacci(2, 2))  // 1
+// 	fmt.Println(bonacci(3, 1))  // 0
+// }
