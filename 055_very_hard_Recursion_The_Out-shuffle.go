@@ -34,7 +34,6 @@ An iterative version of this challenge can be found here.
 package main
 
 import (
-	"fmt"
 	"reflect"
 )
 
@@ -73,8 +72,8 @@ func shuffleCount(n int) int {
 	return count
 }
 
-func main() {
-	fmt.Println(shuffleCount(8))  // ➞ 3
-	fmt.Println(shuffleCount(14)) // ➞ 12
-	fmt.Println(shuffleCount(52)) // ➞ 8
-}
+// func main() {
+// 	fmt.Println(shuffleCount(8))  // ➞ 3
+// 	fmt.Println(shuffleCount(14)) // ➞ 12
+// 	fmt.Println(shuffleCount(52)) // ➞ 8
+// }
